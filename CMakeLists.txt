@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5.1)
-project(transfer)
+project(audioRecord)
 
 # Typically you don't care so much for a third party library's tests to be
 # run from your own project's code.
@@ -30,6 +30,7 @@ add_definitions(-DWEBRTC_INCLUDE_INTERNAL_AUDIO_DEVICE)
 find_package(PkgConfig REQUIRED)
 #pkg_search_module(PKG_SCY REQUIRED libsourcey)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src/third_party/abseil-cpp)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src/third_party/restclient-cpp/include)
@@ -43,5 +44,5 @@ link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src/out/lib)
 #link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src/third_party/restclient-cpp/lib)
 
 
-add_executable(transfer src/main.cpp)
-target_link_libraries(transfer webrtc dl pthread )
+add_executable(audioRecord src/main.cpp src/utility.cpp)
+target_link_libraries(audioRecord webrtc dl pthread )
