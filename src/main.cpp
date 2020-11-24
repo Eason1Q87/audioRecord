@@ -77,8 +77,8 @@ public:
 		const bool keyPressed,
 		uint32_t& newMicLevel) override
 	{
-		printf("RecordedDataIsAvailable line %d \n",__LINE__);
-		/*
+	//	printf("RecordedDataIsAvailable line %d \n",__LINE__);
+		//RecordedDataIsAvailable parameter: 441 2 1 44100 33 0 0 false
 		printf("RecordedDataIsAvailable parameter: %zu %zu %zu %u %u %d %u %s\n", nSamples,
 		nBytesPerSample, nChannels,
 		samplesPerSec, totalDelayMS,
@@ -92,7 +92,7 @@ public:
 			printf(" %08x", pSample[i]);
 		}
 		printf("\n");
-        */
+      
 
         // Convert sample rate from 48k to 16k, the channels from 2 to 1。
 		dst_frame_.sample_rate_hz_ = 16000;
@@ -107,10 +107,10 @@ public:
 			&dst_frame_);
 #endif 
         // save 48k sample
-        //fwrite((int8_t*)audioSamples, 2, nSamples, record_file); 
+         fwrite((int8_t*)audioSamples, 2, nSamples, record_file); 
 
         // save 16k sample after resample
-        /*
+        
         int rc = fwrite((int8_t*)dst_frame_.data(), 2, dst_frame_.samples_per_channel_, record_file);
         if (rc < dst_frame_.samples_per_channel_) {
             printf("writes item: %d\n", dst_frame_.samples_per_channel_);
@@ -118,7 +118,7 @@ public:
         else {
             g_bytes += 2 * dst_frame_.samples_per_channel_;
         }   
-        */
+      
       
 
 		if (audioproc_->set_stream_delay_ms(totalDelayMS) != 0) {
@@ -141,7 +141,7 @@ public:
 		if (err != 0) {
 			assert(false);
 		}
-        
+        /*
         int rc = fwrite((int8_t*)dst_frame_.data(), 2, dst_frame_.samples_per_channel_, record_file);
         if (rc < dst_frame_.samples_per_channel_) {
             printf("writes item: %d\n", dst_frame_.samples_per_channel_);
@@ -149,7 +149,7 @@ public:
         else {
             g_bytes += 2 * dst_frame_.samples_per_channel_;
         }
-    
+    */
 		//fwrite((int8_t*)dst_frame_.data(), 2, dst_frame_.samples_per_channel_, record_file);
 		/*
 		int ret;
@@ -194,7 +194,7 @@ public:
 		if(status == 1){
 
 		}
-		*/
+		 */
 
 		return 0;
 	}
